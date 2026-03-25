@@ -943,18 +943,26 @@
     /* — 480px: correcciones críticas — */
     @media (max-width: 480px) {
 
-      /* TOP BAR — sin overflow, compacto */
+      /* TOP BAR — línea única, sin wrap */
       .top-bar {
         font-size: 11px;
         padding: 8px 12px;
         gap: 6px;
         flex-wrap: nowrap;
-        justify-content: space-between;
+        justify-content: center;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .top-bar > span:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        min-width: 0;
       }
       .top-bar .countdown-wrap { display: none; }
 
-      /* HERO — respiración correcta */
-      #hero { padding-bottom: 56px; }
+      /* HERO — padding fijo para evitar salto por JS */
+      #hero { padding-top: 156px !important; padding-bottom: 56px; }
 
       .hero-badge {
         font-size: 11px;
@@ -1094,16 +1102,17 @@
       .step-content h3 { font-size: 17px; margin-bottom: 8px; }
       .step-content p { font-size: 13px; }
 
-      /* DEMO — separación titulo/card */
+      /* DEMO — separación titulo/card, sin overlap badge */
       .demo-player {
         margin-top: 48px;
         border-radius: 16px;
       }
       #demo > .container > div { padding: 0 4px; }
-      .demo-play-btn { width: 60px; height: 60px; font-size: 24px; }
-      .demo-title-block h3 { font-size: 16px; margin-bottom: 6px; }
-      .demo-title-block p { font-size: 12px; }
-      .demo-badge { font-size: 11px; top: 14px; right: 14px; }
+      .demo-thumb { padding-top: 56px; gap: 14px; }
+      .demo-play-btn { width: 56px; height: 56px; font-size: 22px; }
+      .demo-title-block h3 { font-size: 14px; margin-bottom: 4px; line-height: 1.3; }
+      .demo-title-block p { font-size: 11px; }
+      .demo-badge { font-size: 10px; top: 12px; right: 12px; padding: 4px 10px; }
 
       /* FEATURES */
       .feature-card { padding: 24px 18px; }
@@ -1117,11 +1126,16 @@
       .spec-card h3 { font-size: 15px; margin-bottom: 6px; }
       .spec-card p { font-size: 12px; }
 
-      /* COMPARISON TABLE */
-      .compare-table th { padding: 14px 12px; font-size: 12px; }
-      .compare-table td { padding: 14px 12px; font-size: 13px; }
-      .check { font-size: 14px; }
-      .cross { font-size: 14px; }
+      /* COMPARISON TABLE — columna 3 visible */
+      .compare-scroll-wrapper .compare-table { min-width: 580px; }
+      .compare-table th { padding: 14px 12px; font-size: 11px; }
+      .compare-table td { padding: 14px 12px; font-size: 12px; }
+      .compare-table th:last-child,
+      .compare-table td:last-child { min-width: 150px; }
+      .compare-table th:nth-child(2),
+      .compare-table td:nth-child(2) { min-width: 160px; }
+      .check { font-size: 13px; }
+      .cross { font-size: 13px; }
 
       /* PRICING */
       .pricing-grid { margin-top: 40px; }
@@ -1139,8 +1153,16 @@
         line-height: 1.4;
       }
       .price-amount {
-        font-size: 42px;
+        font-size: 36px;
         margin-bottom: 4px;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        flex-wrap: nowrap;
+      }
+      .price-amount span {
+        font-size: 15px;
+        white-space: nowrap;
       }
       .price-desc { font-size: 13px; margin-bottom: 24px; }
       .price-features { gap: 10px; margin-bottom: 28px; }
@@ -1158,14 +1180,14 @@
       .faq-a { padding: 0 18px 18px; font-size: 14px; }
 
       /* FINAL CTA */
-      #cta { padding: 72px 0; }
+      #cta { padding: 72px 0 100px; }
       #cta h2 { font-size: clamp(26px, 8vw, 44px); letter-spacing: -1px; }
       #cta p { font-size: 15px; margin-bottom: 36px; }
       .cta-actions {
         flex-direction: column;
         align-items: stretch;
         padding: 0 4px;
-        gap: 12px;
+        gap: 16px;
       }
       .cta-actions .btn {
         width: 100%;
@@ -1173,6 +1195,7 @@
         min-height: 52px;
         font-size: 14px;
       }
+      .guarantee { margin-top: 20px; font-size: 12px; padding: 0 8px; }
       .spots-counter { font-size: 12px; padding: 6px 14px; }
 
       /* STICKY BAR */
@@ -2230,6 +2253,7 @@
     _tbResizeTimer = setTimeout(setTopbarHeight, 150);
   }
   setTopbarHeight();
+  window.addEventListener('load', setTopbarHeight);
   window.addEventListener('resize', handleTopbarResize);
   window.addEventListener('orientationchange', setTopbarHeight);
 </script>
