@@ -152,9 +152,10 @@
 
     /* ── NAVBAR ── */
     nav {
-      position: fixed; top: 36px; left: 0; right: 0; z-index: 100;
+      position: fixed; top: var(--topbar-h, 36px); left: 0; right: 0; z-index: 100;
       background: rgba(7,7,15,.85); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
+      transition: top 0.1s ease;
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
@@ -175,7 +176,9 @@
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
     .nav-links a:hover { color: var(--text); }
     .nav-cta { display: flex; gap: 12px; align-items: center; }
-    @media (max-width: 768px) { .nav-links { display: none; } }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
 
     /* INACTIVE BADGE on nav links */
     .soon-badge {
@@ -193,7 +196,7 @@
     /* ── HERO — CENTRADO (v1 style) ── */
     #hero {
       position: relative; z-index: 1;
-      padding: 176px 0 100px;
+      padding: calc(var(--topbar-h, 36px) + 68px + 48px) 0 100px;
       text-align: center;
     }
     .hero-badge {
@@ -527,10 +530,34 @@
 
     /* ── COMPARISON ── */
     #comparison { background: var(--surface); }
-    .compare-table {
-      width: 100%; border-collapse: collapse; margin-top: 64px;
-      background: var(--card); border-radius: 20px; overflow: hidden;
+    .compare-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 48px;
+      border-radius: 20px;
       border: 1px solid var(--border);
+    }
+    .compare-scroll-hint {
+      display: none;
+      align-items: center; justify-content: center; gap: 6px;
+      font-size: 11px; color: var(--muted); padding: 10px;
+      background: var(--card2); border-top: 1px solid var(--border);
+      letter-spacing: .04em;
+    }
+    @media (max-width: 700px) {
+      .compare-scroll-hint { display: flex; }
+      .compare-table td:first-child,
+      .compare-table th:first-child {
+        position: sticky; left: 0; z-index: 2;
+        background: var(--card2);
+        border-right: 1px solid var(--border);
+        min-width: 110px;
+      }
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin-top: 0;
+      background: var(--card); border-radius: 0; overflow: hidden;
+      border: none; min-width: 480px;
     }
     .compare-table th {
       padding: 20px 24px; text-align: left; font-size: 14px; font-weight: 600;
@@ -896,26 +923,275 @@
       .nav-cta .btn-ghost { display: none; }
     }
 
+    /* ══════════════════════════════════════════════════════
+       MOBILE-FIRST RESPONSIVE — Nivel Profesional
+    ══════════════════════════════════════════════════════ */
+
+    /* — Base mobile cleanup — */
     @media (max-width: 600px) {
       h1 { letter-spacing: -1px; }
-      .stats-bar { gap: 24px; padding: 24px 16px; }
-      .stat-num { font-size: 24px; }
-      .step { grid-template-columns: 1fr; }
-      .step-num { width: 48px; height: 48px; border-radius: 14px; font-size: 18px; }
-      .compare-table { font-size: 13px; }
-      .compare-table th, .compare-table td { padding: 14px 16px; }
-      .calc-box { padding: 32px 24px; }
-      .modal { padding: 36px 24px; }
-      .sticky-bar-text { font-size: 12px; }
-      .float-wa { width: 60px; height: 60px; font-size: 28px; bottom: 80px; right: 20px; }
-      section { padding: 72px 0; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .testi-grid { grid-template-columns: 1fr; }
+      section { padding: 64px 0; }
+      .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
+      .testi-grid { grid-template-columns: 1fr; gap: 16px; }
       .features-grid { grid-template-columns: 1fr; }
-      .spec-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero-trust { gap: 12px; }
+      .spec-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .hero-trust { gap: 10px; }
       .footer-inner { flex-direction: column; text-align: center; gap: 16px; }
       .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    }
+
+    /* — 480px: correcciones críticas — */
+    @media (max-width: 480px) {
+
+      /* TOP BAR — sin overflow, compacto */
+      .top-bar {
+        font-size: 11px;
+        padding: 8px 12px;
+        gap: 6px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+      }
+      .top-bar .countdown-wrap { display: none; }
+
+      /* HERO — respiración correcta */
+      #hero { padding-bottom: 56px; }
+
+      .hero-badge {
+        font-size: 11px;
+        padding: 5px 12px;
+        max-width: 92%;
+        white-space: normal;
+        line-height: 1.5;
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      h1 {
+        font-size: clamp(30px, 9vw, 46px);
+        letter-spacing: -1px;
+        margin-bottom: 20px;
+      }
+
+      .hero-sub {
+        font-size: 15px;
+        margin-bottom: 32px;
+        padding: 0 4px;
+      }
+
+      /* CTAs — full width, apilados, thumb-friendly */
+      .hero-ctas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 0 2px;
+      }
+      .hero-ctas > div {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+        width: 100%;
+        display: flex !important;
+      }
+      .hero-ctas .btn,
+      .hero-ctas > a.btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 52px;
+        white-space: normal;
+        text-align: center;
+        font-size: 14px;
+        padding: 14px 20px;
+      }
+      .hero-free-badge {
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        width: fit-content;
+        margin-left: 0;
+      }
+      .hero-microcopy { font-size: 11px; margin-bottom: 40px; }
+
+      /* TRUST BADGES inline */
+      .hero-trust {
+        gap: 8px;
+        margin-top: 20px;
+        margin-bottom: 36px;
+        justify-content: center;
+      }
+      .hero-trust-item { font-size: 11px; gap: 4px; }
+      .hero-trust-item .ht-icon { font-size: 13px; }
+
+      /* STATS BAR — 2x2 grid */
+      .stats-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        padding: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 48px;
+      }
+      .stat-item {
+        padding: 20px 12px;
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        text-align: center;
+      }
+      .stat-item:nth-child(2n) { border-right: none; }
+      .stat-item:nth-child(3),
+      .stat-item:nth-child(4) { border-bottom: none; }
+      .stat-num { font-size: 26px; }
+      .stat-lbl { font-size: 11px; }
+
+      /* MOCKUP — sin desbordamiento */
+      .mockup-wrapper {
+        max-width: 100%;
+        border-radius: 16px;
+        animation: none; /* sin float en mobile */
+      }
+      .mockup-body { padding: 16px; }
+      .msg { font-size: 13px; }
+
+      /* TRUST BAR */
+      .trust-bar-inner { gap: 12px; }
+      .trust-badges { gap: 8px; justify-content: center; }
+      .trust-badge { padding: 6px 10px; font-size: 11px; }
+
+      /* SECTION TITLES */
+      .section-title {
+        font-size: clamp(22px, 7vw, 34px);
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+      }
+      .section-sub { font-size: 14px; line-height: 1.6; }
+
+      /* PAIN */
+      .pain-grid { gap: 16px; }
+      .pain-card { padding: 24px 18px; }
+      .pain-stat { font-size: 34px; }
+      .pain-icon { font-size: 32px; margin-bottom: 14px; }
+      .pain-card h3 { font-size: 17px; }
+      .pain-card p { font-size: 13px; }
+
+      /* CALCULADORA */
+      .calc-box { padding: 24px 18px; margin-top: 36px; }
+      .calc-box h3 { font-size: 20px; }
+      .calc-box .calc-sub { font-size: 13px; }
+      .calc-result-num { font-size: 34px; }
+      .calc-cta .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 52px;
+        white-space: normal;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      /* HOW IT WORKS */
+      .step { gap: 16px; padding: 28px 0; }
+      .step-num { width: 44px; height: 44px; font-size: 16px; border-radius: 12px; }
+      .step-content h3 { font-size: 17px; margin-bottom: 8px; }
+      .step-content p { font-size: 13px; }
+
+      /* DEMO — separación titulo/card */
+      .demo-player {
+        margin-top: 48px;
+        border-radius: 16px;
+      }
+      #demo > .container > div { padding: 0 4px; }
+      .demo-play-btn { width: 60px; height: 60px; font-size: 24px; }
+      .demo-title-block h3 { font-size: 16px; margin-bottom: 6px; }
+      .demo-title-block p { font-size: 12px; }
+      .demo-badge { font-size: 11px; top: 14px; right: 14px; }
+
+      /* FEATURES */
+      .feature-card { padding: 24px 18px; }
+      .feature-icon { width: 44px; height: 44px; font-size: 20px; margin-bottom: 14px; }
+      .feature-card h3 { font-size: 16px; }
+      .feature-card p { font-size: 13px; }
+
+      /* SPECIALTIES */
+      .spec-card { padding: 20px 12px; }
+      .spec-emoji { font-size: 32px; margin-bottom: 10px; }
+      .spec-card h3 { font-size: 15px; margin-bottom: 6px; }
+      .spec-card p { font-size: 12px; }
+
+      /* COMPARISON TABLE */
+      .compare-table th { padding: 14px 12px; font-size: 12px; }
+      .compare-table td { padding: 14px 12px; font-size: 13px; }
+      .check { font-size: 14px; }
+      .cross { font-size: 14px; }
+
+      /* PRICING */
+      .pricing-grid { margin-top: 40px; }
+      .price-card { padding: 32px 18px 24px; }
+      .price-card.popular { margin-top: 16px; }
+      .price-savings {
+        display: block;
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 11px;
+        padding: 5px 12px;
+        margin-bottom: 18px;
+        white-space: normal;
+        line-height: 1.4;
+      }
+      .price-amount {
+        font-size: 42px;
+        margin-bottom: 4px;
+      }
+      .price-desc { font-size: 13px; margin-bottom: 24px; }
+      .price-features { gap: 10px; margin-bottom: 28px; }
+      .price-features li { font-size: 13px; gap: 8px; }
+      .popular-badge { font-size: 11px; padding: 4px 14px; }
+
+      /* TESTIMONIALS */
+      .testi-card { padding: 24px 18px; }
+      .testi-text { font-size: 14px; margin-bottom: 18px; }
+      .testi-name { font-size: 14px; }
+
+      /* FAQ */
+      .faq-list { margin-top: 40px; gap: 12px; }
+      .faq-q { padding: 18px 18px; font-size: 14px; }
+      .faq-a { padding: 0 18px 18px; font-size: 14px; }
+
+      /* FINAL CTA */
+      #cta { padding: 72px 0; }
+      #cta h2 { font-size: clamp(26px, 8vw, 44px); letter-spacing: -1px; }
+      #cta p { font-size: 15px; margin-bottom: 36px; }
+      .cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 4px;
+        gap: 12px;
+      }
+      .cta-actions .btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 52px;
+        font-size: 14px;
+      }
+      .spots-counter { font-size: 12px; padding: 6px 14px; }
+
+      /* STICKY BAR */
+      .sticky-bar { flex-direction: column; gap: 10px; padding: 14px 16px; }
+      .sticky-bar-text { font-size: 12px; text-align: center; justify-content: center; }
+      .sticky-bar .btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 14px; }
+
+      /* FLOAT BUTTON */
+      .float-wa { width: 56px; height: 56px; font-size: 26px; bottom: 76px; right: 16px; }
+      .float-notif { width: 18px; height: 18px; font-size: 10px; }
+
+      /* MODAL */
+      .modal { padding: 28px 18px; border-radius: 20px; max-height: 88vh; overflow-y: auto; }
+      .modal-overlay { padding: 16px; align-items: flex-end; }
+      .modal h3 { font-size: 20px; }
+      .modal p { font-size: 14px; margin-bottom: 20px; }
+      .modal-input { padding: 13px 14px; font-size: 14px; }
+      .modal-submit { font-size: 15px; padding: 15px; }
+      .modal-icon { font-size: 44px; margin-bottom: 12px; }
     }
   </style>
 </head>
@@ -1415,52 +1691,55 @@
     <div class="section-tag"><span class="tag">Comparación</span></div>
     <h2 class="section-title">¿Cuánto te cuesta<br /><span class="accent">no tener CLINIQ.IA?</span></h2>
 
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Función</th>
-          <th>Recepcionista tradicional</th>
-          <th>CLINIQ.IA</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Disponibilidad</td>
-          <td>Lun-Vie, 8am-6pm</td>
-          <td class="check">✓ 24/7, 365 días</td>
-        </tr>
-        <tr>
-          <td>Costo mensual</td>
-          <td>$800.000 – $1.500.000 COP</td>
-          <td class="check">✓ Desde $99.000 COP</td>
-        </tr>
-        <tr>
-          <td>Tiempo de respuesta</td>
-          <td>Minutos u horas</td>
-          <td class="check">✓ Menos de 3 segundos</td>
-        </tr>
-        <tr>
-          <td>Recordatorios automáticos</td>
-          <td class="cross">✗ Manual, olvidable</td>
-          <td class="check">✓ Siempre, sin fallas</td>
-        </tr>
-        <tr>
-          <td>Reportes y métricas</td>
-          <td class="cross">✗ No disponible</td>
-          <td class="check">✓ Dashboard en tiempo real</td>
-        </tr>
-        <tr>
-          <td>Capacitación requerida</td>
-          <td>Semanas de onboarding</td>
-          <td class="check">✓ Lista en 24 horas</td>
-        </tr>
-        <tr>
-          <td>Ausentismo / vacaciones</td>
-          <td class="cross">✗ Sí, frecuente</td>
-          <td class="check">✓ Nunca</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="compare-scroll-wrapper">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Función</th>
+            <th>Recepcionista tradicional</th>
+            <th>CLINIQ.IA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Disponibilidad</td>
+            <td>Lun-Vie, 8am-6pm</td>
+            <td class="check">✓ 24/7, 365 días</td>
+          </tr>
+          <tr>
+            <td>Costo mensual</td>
+            <td>$800.000 – $1.500.000 COP</td>
+            <td class="check">✓ Desde $99.000 COP</td>
+          </tr>
+          <tr>
+            <td>Tiempo de respuesta</td>
+            <td>Minutos u horas</td>
+            <td class="check">✓ Menos de 3 segundos</td>
+          </tr>
+          <tr>
+            <td>Recordatorios automáticos</td>
+            <td class="cross">✗ Manual, olvidable</td>
+            <td class="check">✓ Siempre, sin fallas</td>
+          </tr>
+          <tr>
+            <td>Reportes y métricas</td>
+            <td class="cross">✗ No disponible</td>
+            <td class="check">✓ Dashboard en tiempo real</td>
+          </tr>
+          <tr>
+            <td>Capacitación requerida</td>
+            <td>Semanas de onboarding</td>
+            <td class="check">✓ Lista en 24 horas</td>
+          </tr>
+          <tr>
+            <td>Ausentismo / vacaciones</td>
+            <td class="cross">✗ Sí, frecuente</td>
+            <td class="check">✓ Nunca</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="compare-scroll-hint">← Desliza para ver más →</div>
+    </div>
   </div>
 </section>
 
@@ -1937,6 +2216,22 @@
     el.style.transition = 'opacity .5s ease, transform .5s ease';
     observer.observe(el);
   });
+
+  /* ── TOP BAR HEIGHT DINÁMICA ── */
+  function setTopbarHeight() {
+    const tb = document.getElementById('topBar');
+    if (tb) {
+      document.documentElement.style.setProperty('--topbar-h', tb.offsetHeight + 'px');
+    }
+  }
+  let _tbResizeTimer;
+  function handleTopbarResize() {
+    clearTimeout(_tbResizeTimer);
+    _tbResizeTimer = setTimeout(setTopbarHeight, 150);
+  }
+  setTopbarHeight();
+  window.addEventListener('resize', handleTopbarResize);
+  window.addEventListener('orientationchange', setTopbarHeight);
 </script>
 
 </body>
