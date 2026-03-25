@@ -3,8 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CLINIQ.IA — Tu clínica atiende 24/7. Sin contratar a nadie más.</title>
-  <meta name="description" content="CLINIQ.IA agenda citas, responde pacientes y envía recordatorios automáticamente por WhatsApp. Sin recepcionista extra. Sin perder pacientes." />
+  <title>CLINIQ.IA — Tu clínica atiende 24/7 por WhatsApp con IA</title>
+  <meta name="description" content="CLINIQ.IA es tu recepcionista con inteligencia artificial. Agenda citas, responde pacientes y envía recordatorios automáticos por WhatsApp. Sin contratar a nadie. Desde $99.000 COP/mes." />
+
+  <!-- SEO avanzado -->
+  <meta name="keywords" content="recepcionista IA, chatbot clínica, agenda automática WhatsApp, inteligencia artificial salud, automatización clínica, Colombia, México, España" />
+  <meta name="author" content="IncubTechnology SAS" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cliniq-ia.vercel.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cliniq-ia.vercel.app/" />
+  <meta property="og:title" content="CLINIQ.IA — Tu clínica atiende 24/7 por WhatsApp con IA" />
+  <meta property="og:description" content="Agenda citas, responde pacientes y envía recordatorios automáticos por WhatsApp. Sin recepcionista extra. Desde $99.000 COP/mes." />
+  <meta property="og:image" content="https://cliniq-ia.vercel.app/og-image.png" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:site_name" content="CLINIQ.IA" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://cliniq-ia.vercel.app/" />
+  <meta name="twitter:title" content="CLINIQ.IA — Tu clínica atiende 24/7 por WhatsApp con IA" />
+  <meta name="twitter:description" content="Agenda citas, responde pacientes y envía recordatorios automáticos. Sin recepcionista extra. Desde $99.000 COP/mes." />
+  <meta name="twitter:image" content="https://cliniq-ia.vercel.app/og-image.png" />
+
+  <!-- Structured Data / Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CLINIQ.IA",
+    "description": "Recepcionista con inteligencia artificial por WhatsApp para clínicas de salud",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "99000",
+      "priceCurrency": "COP"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "IncubTechnology SAS",
+      "url": "https://cliniq-ia.vercel.app/"
+    }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
@@ -709,13 +754,152 @@
     }
     .demo-modal-close:hover { color: var(--text); }
 
+    /* ── HOW IT WORKS responsive grid ── */
+    .how-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
     @media (max-width: 900px) {
       .hero-ctas { justify-content: center; }
+      .how-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* ── FORM FIELD ERROR STATE ── */
+    .modal-input.field-error {
+      border-color: var(--danger) !important;
+      animation: shake .3s ease;
+    }
+    .field-error-msg {
+      color: var(--danger);
+      font-size: 12px;
+      margin-top: -6px;
+      text-align: left;
+      display: none;
+    }
+    .field-error-msg.visible { display: block; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25%       { transform: translateX(-6px); }
+      75%       { transform: translateX(6px); }
+    }
+
+    /* ── PROGRESS BAR en modal ── */
+    .modal-progress {
+      height: 4px; background: var(--border); border-radius: 2px;
+      margin-bottom: 20px; overflow: hidden;
+    }
+    .modal-progress-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      transition: width .4s ease;
+    }
+
+    /* ── SOCIAL PROOF en modal ── */
+    .modal-social-proof {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(0,212,170,.06); border: 1px solid rgba(0,212,170,.12);
+      border-radius: 10px; padding: 10px 14px; margin-bottom: 16px;
+      font-size: 13px; color: var(--muted);
+    }
+    .modal-social-proof strong { color: var(--accent); }
+
+    /* ── TRUST BADGE INLINE en hero ── */
+    .hero-trust {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; flex-wrap: wrap; margin-top: 32px; margin-bottom: 48px;
+    }
+    .hero-trust-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--muted); font-weight: 500;
+    }
+    .hero-trust-item .ht-icon { font-size: 15px; }
+
+    /* ── SECTION DIVIDER con gradiente ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      border: none; margin: 0;
+    }
+
+    /* ── TESTIMONIALS — improved ── */
+    .testi-card {
+      transition: all .3s;
+    }
+    .testi-card:hover {
+      border-color: rgba(0,212,170,.25);
+      transform: translateY(-4px);
+    }
+    .testi-verified {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(0,212,170,.08); border: 1px solid rgba(0,212,170,.2);
+      color: var(--accent); font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 100px; margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── PRICING — highlight ── */
+    .price-savings {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,77,109,.1); border: 1px solid rgba(255,77,109,.2);
+      color: var(--danger); font-size: 12px; font-weight: 700;
+      padding: 4px 10px; border-radius: 100px; margin-bottom: 16px;
+    }
+
+    /* ── CTA SECTION — urgency counter ── */
+    .spots-counter {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,77,109,.08); border: 1px solid rgba(255,77,109,.2);
+      color: var(--danger); font-size: 14px; font-weight: 600;
+      padding: 8px 18px; border-radius: 100px; margin-bottom: 28px;
+    }
+    .spots-counter .sc-dot {
+      width: 8px; height: 8px; background: var(--danger);
+      border-radius: 50%; animation: pulse 1.5s infinite;
+    }
+
+    /* ── MOBILE HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      background: none; border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 10px; cursor: pointer;
+      color: var(--text); font-size: 18px; transition: border-color .2s;
+    }
+    .nav-hamburger:hover { border-color: var(--accent); }
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(7,7,15,.97); backdrop-filter: blur(20px);
+      z-index: 150; flex-direction: column; align-items: center;
+      justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text); text-decoration: none;
+      font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800;
+      letter-spacing: -1px; transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu-close {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; color: var(--muted);
+      font-size: 28px; cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: block; }
+      .nav-cta .btn-ghost { display: none; }
     }
 
     @media (max-width: 600px) {
       h1 { letter-spacing: -1px; }
-      .stats-bar { gap: 24px; }
+      .stats-bar { gap: 24px; padding: 24px 16px; }
+      .stat-num { font-size: 24px; }
       .step { grid-template-columns: 1fr; }
       .step-num { width: 48px; height: 48px; border-radius: 14px; font-size: 18px; }
       .compare-table { font-size: 13px; }
@@ -723,7 +907,15 @@
       .calc-box { padding: 32px 24px; }
       .modal { padding: 36px 24px; }
       .sticky-bar-text { font-size: 12px; }
-      .float-wa { width: 60px; height: 60px; font-size: 28px; }
+      .float-wa { width: 60px; height: 60px; font-size: 28px; bottom: 80px; right: 20px; }
+      section { padding: 72px 0; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .spec-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-trust { gap: 12px; }
+      .footer-inner { flex-direction: column; text-align: center; gap: 16px; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
     }
   </style>
 </head>
@@ -736,35 +928,69 @@
   <span class="g3"></span>
 </div>
 
-<!-- MODAL WAITLIST (2 campos) -->
-<div class="modal-overlay" id="modalOverlay">
+<!-- MODAL WAITLIST (mejorado: 4 campos + validación) -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
     <div id="modalForm">
-      <div class="modal-icon">🚀</div>
+      <div class="modal-icon" aria-hidden="true">🚀</div>
       <h3 id="modalTitle">Quiero mi recepcionista IA</h3>
-      <p id="modalDesc">CLINIQ.IA está en fase beta. Solo necesitamos 2 datos para reservar tu cupo — con <strong style="color:var(--accent);">50% de descuento</strong> por ser early adopter.</p>
-      <div class="modal-form">
-        <input class="modal-input" id="inputWa" type="tel" placeholder="Tu WhatsApp (ej. +57 300 123 4567)" />
-        <select class="modal-input" id="inputClinica">
-          <option value="" disabled selected>Tipo de clínica</option>
-          <option value="odontologia">Odontología</option>
-          <option value="psicologia">Psicología</option>
-          <option value="veterinaria">Veterinaria</option>
-          <option value="nutricion">Nutrición</option>
-          <option value="estetica">Estética y Spa</option>
-          <option value="medicina">Medicina General</option>
-          <option value="otra">Otra especialidad</option>
-        </select>
-        <button class="modal-submit" onclick="submitWaitlist()">Quiero mi recepcionista IA gratis →</button>
+
+      <!-- Social proof dentro del modal -->
+      <div class="modal-social-proof" aria-live="polite">
+        <span aria-hidden="true">👥</span>
+        <span><strong>23 clínicas</strong> se unieron esta semana · Solo quedan <strong>47 cupos</strong></span>
       </div>
-      <p class="modal-note">🔒 Sin spam. Te contactamos en menos de 24 horas.</p>
+
+      <p id="modalDesc">CLINIQ.IA está en fase beta. Reserva tu cupo ahora con <strong style="color:var(--accent);">50% de descuento</strong> por ser early adopter.</p>
+
+      <!-- Barra de progreso visual -->
+      <div class="modal-progress" aria-label="Cupos ocupados: 88%">
+        <div class="modal-progress-fill" id="modalProgressFill" style="width:88%;"></div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);text-align:right;margin-top:-14px;margin-bottom:16px;">88% de cupos ocupados</p>
+
+      <div class="modal-form" id="waitlistForm" novalidate>
+        <!-- Nombre -->
+        <div>
+          <input class="modal-input" id="inputNombre" type="text" placeholder="Tu nombre completo *" autocomplete="name" maxlength="80" aria-required="true" aria-describedby="errNombre" />
+          <p class="field-error-msg" id="errNombre">Por favor ingresa tu nombre.</p>
+        </div>
+        <!-- WhatsApp -->
+        <div>
+          <input class="modal-input" id="inputWa" type="tel" placeholder="WhatsApp con código de país (ej. +57 300 123 4567) *" autocomplete="tel" aria-required="true" aria-describedby="errWa" />
+          <p class="field-error-msg" id="errWa">Ingresa un número válido con código de país (+57, +52, +34…).</p>
+        </div>
+        <!-- Email -->
+        <div>
+          <input class="modal-input" id="inputEmail" type="email" placeholder="Correo electrónico *" autocomplete="email" aria-required="true" aria-describedby="errEmail" />
+          <p class="field-error-msg" id="errEmail">Ingresa un correo electrónico válido.</p>
+        </div>
+        <!-- Tipo de clínica -->
+        <div>
+          <select class="modal-input" id="inputClinica" aria-required="true" aria-describedby="errClinica">
+            <option value="" disabled selected>Tipo de clínica *</option>
+            <option value="odontologia">🦷 Odontología</option>
+            <option value="psicologia">🧠 Psicología</option>
+            <option value="veterinaria">🐾 Veterinaria</option>
+            <option value="nutricion">🥗 Nutrición</option>
+            <option value="estetica">💆 Estética y Spa</option>
+            <option value="medicina">🏥 Medicina General</option>
+            <option value="otra">➕ Otra especialidad</option>
+          </select>
+          <p class="field-error-msg" id="errClinica">Selecciona el tipo de clínica.</p>
+        </div>
+        <button class="modal-submit" id="modalSubmitBtn" type="button" onclick="submitWaitlist()">
+          <span id="submitBtnText">Asegurar mi cupo con descuento →</span>
+        </button>
+      </div>
+      <p class="modal-note">🔒 Sin spam. Sin tarjeta de crédito. Te contactamos en menos de 24h.</p>
     </div>
-    <div class="modal-success" id="modalSuccess">
-      <div class="success-icon">✅</div>
-      <h3 style="color:var(--accent);">¡Estás dentro!</h3>
-      <p>Recibimos tu solicitud. Te contactamos en las próximas <strong>24 horas</strong> para activar tu CLINIQ.IA con el descuento beta.</p>
-      <p style="margin-top:16px;font-size:13px;color:var(--muted);">Mientras tanto, comparte con un colega que también lo necesite 😉</p>
+    <div class="modal-success" id="modalSuccess" role="alert" aria-live="assertive">
+      <div class="success-icon" aria-hidden="true">✅</div>
+      <h3 style="color:var(--accent);">¡Estás dentro, <span id="successName"></span>!</h3>
+      <p>Recibimos tu solicitud. Te contactamos en las próximas <strong>24 horas</strong> por WhatsApp para activar tu CLINIQ.IA con el 50% de descuento beta.</p>
+      <p style="margin-top:16px;font-size:13px;color:var(--muted);">Mientras tanto, comparte con un colega que también lo necesite 🙌</p>
     </div>
   </div>
 </div>
@@ -802,23 +1028,34 @@
   <a href="#pricing">Asegura el tuyo →</a>
 </div>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú de navegación">
+  <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Cerrar menú">✕</button>
+  <a href="#how" onclick="closeMobileMenu()">Cómo funciona</a>
+  <a href="#features" onclick="closeMobileMenu()">Funciones</a>
+  <a href="#pricing" onclick="closeMobileMenu()">Precios</a>
+  <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="#" onclick="closeMobileMenu();openModal();return false;" class="btn btn-primary btn-lg" style="margin-top:8px;">Empieza gratis →</a>
+</div>
+
 <!-- NAVBAR -->
-<nav>
+<nav role="navigation" aria-label="Navegación principal">
   <div class="nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-icon">🤖</div>
+    <a href="#" class="logo" aria-label="CLINIQ.IA - Inicio">
+      <div class="logo-icon" aria-hidden="true">🤖</div>
       CLINIQ<span class="logo-dot">.IA</span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" role="list">
       <li><a href="#how">Cómo funciona</a></li>
       <li><a href="#features">Funciones</a></li>
       <li><a href="#pricing">Precios</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#" class="link-inactive">Dashboard<span class="soon-badge">pronto</span></a></li>
+      <li><a href="#" class="link-inactive" aria-disabled="true">Dashboard<span class="soon-badge">pronto</span></a></li>
     </ul>
     <div class="nav-cta">
       <a href="#pricing" class="btn btn-ghost" style="padding:10px 20px;font-size:14px;">Ver planes</a>
       <a href="#" onclick="openModal();return false;" class="btn btn-primary" style="padding:10px 20px;font-size:14px;">Empieza gratis →</a>
+      <button class="nav-hamburger" onclick="openMobileMenu()" aria-label="Abrir menú" aria-expanded="false" id="hamburgerBtn">☰</button>
     </div>
   </div>
 </nav>
@@ -827,8 +1064,8 @@
 <section id="hero">
   <div class="container">
 
-    <div class="hero-badge">
-      <span class="dot"></span>
+    <div class="hero-badge" role="status" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
       Activo en clínicas de Colombia, México y España
     </div>
 
@@ -840,18 +1077,38 @@
 
     <div class="hero-ctas">
       <div style="display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;">
-        <a href="#" onclick="openModal();return false;" class="btn btn-wa btn-lg">
-          <span>💬</span> Quiero mi recepcionista IA gratis →
+        <a href="#" onclick="openModal();return false;" class="btn btn-wa btn-lg" aria-label="Abrir formulario de registro gratuito">
+          <span aria-hidden="true">💬</span> Quiero mi recepcionista IA gratis →
         </a>
-        <span class="hero-free-badge">✓ 14 días gratis incluidos</span>
+        <span class="hero-free-badge" aria-label="14 días gratis incluidos">✓ 14 días gratis incluidos</span>
       </div>
       <a href="#how" class="btn btn-ghost btn-lg">Ver cómo funciona →</a>
     </div>
 
-    <p class="hero-microcopy">Sin tarjeta · Activación 24h · Cancela cuando quieras</p>
+    <p class="hero-microcopy">Sin tarjeta de crédito · Activación en 24h · Cancela cuando quieras</p>
+
+    <!-- TRUST BADGES INLINE -->
+    <div class="hero-trust" role="list" aria-label="Indicadores de confianza">
+      <div class="hero-trust-item" role="listitem">
+        <span class="ht-icon" aria-hidden="true">🏥</span>
+        <span>+847 clínicas activas</span>
+      </div>
+      <div class="hero-trust-item" role="listitem">
+        <span class="ht-icon" aria-hidden="true">⭐</span>
+        <span>4.9/5 satisfacción</span>
+      </div>
+      <div class="hero-trust-item" role="listitem">
+        <span class="ht-icon" aria-hidden="true">🔒</span>
+        <span>Datos 100% seguros</span>
+      </div>
+      <div class="hero-trust-item" role="listitem">
+        <span class="ht-icon" aria-hidden="true">⚡</span>
+        <span>Activa en 24 horas</span>
+      </div>
+    </div>
 
     <!-- STATS BAR centrada -->
-    <div class="stats-bar">
+    <div class="stats-bar" role="list" aria-label="Estadísticas de CLINIQ.IA">
       <div class="stat-item">
         <div class="stat-num">847</div>
         <div class="stat-lbl">Clínicas activas</div>
@@ -1000,7 +1257,7 @@
 <!-- HOW IT WORKS -->
 <section id="how">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div class="how-grid">
       <div>
         <div class="section-tag"><span class="tag">Cómo funciona</span></div>
         <h2 class="section-title">Activo en tu clínica<br />en menos de <span class="accent">24 horas.</span></h2>
@@ -1219,6 +1476,7 @@
     <div class="pricing-grid" style="margin-top:64px;">
       <!-- STARTER -->
       <div class="price-card">
+        <div class="price-savings">🔥 Ahorras $701.000/mes vs. recepcionista</div>
         <div class="price-name">Starter</div>
         <div class="price-amount">$99k <span>COP/mes</span></div>
         <div class="price-desc">Para clínicas pequeñas o consultorios unipersonales.</div>
@@ -1238,6 +1496,7 @@
       <!-- PRO (POPULAR) -->
       <div class="price-card popular">
         <div class="popular-badge">⭐ MÁS POPULAR</div>
+        <div class="price-savings">🔥 Ahorras $951.000/mes vs. recepcionista</div>
         <div class="price-name">Pro</div>
         <div class="price-amount">$249k <span>COP/mes</span></div>
         <div class="price-desc">Para clínicas con 2-5 profesionales en activo.</div>
@@ -1352,6 +1611,14 @@
         <button class="faq-q">¿Funciona para clínicas con varios médicos o especialidades? <span class="icon">+</span></button>
         <div class="faq-a">Perfectamente. Los planes Pro y Clínica están diseñados para equipos multidisciplinarios. Cada especialista puede tener su propia agenda y el sistema distribuye automáticamente las citas según disponibilidad y especialidad.</div>
       </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Funciona en México y España también? <span class="icon">+</span></button>
+        <div class="faq-a">Sí. CLINIQ.IA está disponible en Colombia, México y España. El asistente adapta el lenguaje y la moneda al contexto de cada país. Los precios mostrados son en COP para Colombia; para México y España, contáctanos para obtener tarifas locales.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Qué pasa con los pacientes que no usan WhatsApp? <span class="icon">+</span></button>
+        <div class="faq-a">WhatsApp tiene una penetración del 95%+ en Colombia, México y España, por lo que cubre a la gran mayoría de tus pacientes. Estamos trabajando en integrar canales adicionales como Instagram DM y llamadas de voz IA para el 2026.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1359,7 +1626,10 @@
 <!-- FINAL CTA -->
 <section id="cta">
   <div class="container">
-    <div class="tag tag-purple" style="margin-bottom:24px; display:inline-flex;">🚀 Beta — Cupos limitados</div>
+    <div class="spots-counter" role="status" aria-live="polite">
+      <span class="sc-dot" aria-hidden="true"></span>
+      Solo quedan <strong>47 cupos</strong> disponibles en beta
+    </div>
     <h2>Tu clínica merece una<br />recepcionista que <span class="accent">nunca falla.</span></h2>
     <p>Actívala hoy. 14 días gratis. Sin tarjeta de crédito. Sin compromisos.</p>
     <div class="cta-actions">
@@ -1388,17 +1658,23 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer role="contentinfo">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">CLINIQ<span style="color:var(--accent);">.IA</span></div>
-      <div class="footer-links">
-        <a href="#" class="link-inactive">Términos</a>
-        <a href="#" class="link-inactive">Privacidad</a>
-        <a href="#" onclick="openModal();return false;">Contacto</a>
-        <a href="#" class="link-inactive">Blog</a>
+      <div>
+        <div class="footer-logo">CLINIQ<span style="color:var(--accent);">.IA</span></div>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;max-width:240px;">Recepcionista con IA por WhatsApp para clínicas de salud en Colombia, México y España.</p>
       </div>
-      <div class="footer-copy">© 2026 IncubTechnology SAS — Todos los derechos reservados.</div>
+      <div class="footer-links">
+        <a href="#" class="link-inactive" aria-disabled="true">Términos</a>
+        <a href="#" class="link-inactive" aria-disabled="true">Privacidad</a>
+        <a href="#" onclick="openModal();return false;">Contacto</a>
+        <a href="#" class="link-inactive" aria-disabled="true">Blog</a>
+      </div>
+      <div>
+        <div class="footer-copy">© 2026 IncubTechnology SAS</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">Colombia · México · España</div>
+      </div>
     </div>
   </div>
 </footer>
@@ -1421,6 +1697,18 @@
 </div>
 
 <script>
+  /* ── MOBILE MENU ── */
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'true');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
+  }
+
   /* ── MODAL WAITLIST ── */
   function openModal(demoMode) {
     if (demoMode) {
@@ -1428,31 +1716,131 @@
       document.getElementById('modalDesc').innerHTML = 'El demo en vivo está disponible para clientes beta. Únete ahora y accede primero — con <strong style="color:var(--accent);">50% de descuento</strong>.';
     } else {
       document.getElementById('modalTitle').textContent = 'Quiero mi recepcionista IA';
-      document.getElementById('modalDesc').innerHTML = 'CLINIQ.IA está en fase beta. Solo necesitamos 2 datos para reservar tu cupo — con <strong style="color:var(--accent);">50% de descuento</strong> por ser early adopter.';
+      document.getElementById('modalDesc').innerHTML = 'CLINIQ.IA está en fase beta. Reserva tu cupo ahora con <strong style="color:var(--accent);">50% de descuento</strong> por ser early adopter.';
     }
     document.getElementById('modalOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Focus en el primer campo para accesibilidad
+    setTimeout(() => {
+      const firstField = document.getElementById('inputNombre');
+      if (firstField) firstField.focus();
+    }, 100);
   }
   function closeModal() {
     document.getElementById('modalOverlay').classList.remove('open');
     document.body.style.overflow = '';
   }
-  function submitWaitlist() {
-    const wa = document.getElementById('inputWa');
-    const cl = document.getElementById('inputClinica');
-    let valid = true;
-    [wa, cl].forEach(el => { el.style.borderColor = 'var(--border)'; });
-    if (!wa.value.trim()) { wa.style.borderColor = 'var(--danger)'; valid = false; }
-    if (!cl.value) { cl.style.borderColor = 'var(--danger)'; valid = false; }
-    if (!valid) return;
-    document.getElementById('modalForm').style.display = 'none';
-    document.getElementById('modalSuccess').style.display = 'block';
+
+  /* Validación robusta del formulario */
+  function validatePhone(val) {
+    // Acepta formatos: +57 300 123 4567, +521234567890, +34 612 345 678, etc.
+    const cleaned = val.replace(/[\s\-\(\)]/g, '');
+    return /^\+\d{7,15}$/.test(cleaned);
   }
+  function validateEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+  function setFieldError(inputEl, errEl, show) {
+    if (show) {
+      inputEl.classList.add('field-error');
+      errEl.classList.add('visible');
+      inputEl.setAttribute('aria-invalid', 'true');
+    } else {
+      inputEl.classList.remove('field-error');
+      errEl.classList.remove('visible');
+      inputEl.setAttribute('aria-invalid', 'false');
+    }
+  }
+
+  // Limpiar error al escribir
+  ['inputNombre','inputWa','inputEmail','inputClinica'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', function() {
+      const errId = id.replace('input','err').replace('Nombre','Nombre').replace('Wa','Wa').replace('Email','Email').replace('Clinica','Clinica');
+      const errEl = document.getElementById(
+        id === 'inputNombre' ? 'errNombre' :
+        id === 'inputWa'     ? 'errWa'     :
+        id === 'inputEmail'  ? 'errEmail'  : 'errClinica'
+      );
+      setFieldError(this, errEl, false);
+    });
+  });
+
+  function submitWaitlist() {
+    const nombre  = document.getElementById('inputNombre');
+    const wa      = document.getElementById('inputWa');
+    const email   = document.getElementById('inputEmail');
+    const clinica = document.getElementById('inputClinica');
+
+    const errNombre  = document.getElementById('errNombre');
+    const errWa      = document.getElementById('errWa');
+    const errEmail   = document.getElementById('errEmail');
+    const errClinica = document.getElementById('errClinica');
+
+    let valid = true;
+
+    // Nombre
+    if (!nombre.value.trim() || nombre.value.trim().length < 2) {
+      setFieldError(nombre, errNombre, true);
+      valid = false;
+    } else {
+      setFieldError(nombre, errNombre, false);
+    }
+
+    // WhatsApp
+    if (!validatePhone(wa.value)) {
+      setFieldError(wa, errWa, true);
+      valid = false;
+    } else {
+      setFieldError(wa, errWa, false);
+    }
+
+    // Email
+    if (!validateEmail(email.value)) {
+      setFieldError(email, errEmail, true);
+      valid = false;
+    } else {
+      setFieldError(email, errEmail, false);
+    }
+
+    // Clínica
+    if (!clinica.value) {
+      setFieldError(clinica, errClinica, true);
+      valid = false;
+    } else {
+      setFieldError(clinica, errClinica, false);
+    }
+
+    if (!valid) {
+      // Scroll al primer error
+      const firstError = document.querySelector('.field-error');
+      if (firstError) firstError.focus();
+      return;
+    }
+
+    // Estado de carga en el botón
+    const btn = document.getElementById('modalSubmitBtn');
+    const btnText = document.getElementById('submitBtnText');
+    btn.disabled = true;
+    btnText.textContent = 'Registrando...';
+
+    // Simular envío (reemplazar con Supabase cuando esté listo)
+    setTimeout(() => {
+      const nombreVal = nombre.value.trim().split(' ')[0];
+      document.getElementById('successName').textContent = nombreVal;
+      document.getElementById('modalForm').style.display = 'none';
+      document.getElementById('modalSuccess').style.display = 'block';
+      btn.disabled = false;
+      btnText.textContent = 'Asegurar mi cupo con descuento →';
+    }, 1200);
+  }
+
   document.getElementById('modalOverlay').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(); closeDemoModal(); }
+    if (e.key === 'Escape') { closeModal(); closeDemoModal(); closeMobileMenu(); }
   });
 
   /* ── MODAL DEMO ── */
