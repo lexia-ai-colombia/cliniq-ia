@@ -70,7 +70,7 @@
       --gold:      #FFD166;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       background: var(--bg);
@@ -674,7 +674,12 @@
       text-decoration: none; transition: transform .2s; cursor: pointer;
       border: none;
     }
-    .float-wa:hover { transform: scale(1.1); }
+    .float-wa { animation: floatBtn 3s ease-in-out infinite; }
+    .float-wa:hover { animation: none; transform: scale(1.1); }
+    @keyframes floatBtn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
     .float-notif {
       position: absolute; top: 2px; right: 2px;
       width: 22px; height: 22px; background: var(--danger); border-radius: 50%;
@@ -962,7 +967,7 @@
       .top-bar .countdown-wrap { display: none; }
 
       /* HERO — padding fijo para evitar salto por JS */
-      #hero { padding-top: 156px !important; padding-bottom: 56px; }
+      #hero { padding-top: 130px !important; padding-bottom: 56px; }
 
       .hero-badge {
         font-size: 11px;
@@ -1056,7 +1061,11 @@
       .mockup-wrapper {
         max-width: 100%;
         border-radius: 16px;
-        animation: none; /* sin float en mobile */
+        animation: floatMockupSoft 5s ease-in-out infinite;
+      }
+      @keyframes floatMockupSoft {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
       }
       .mockup-body { padding: 16px; }
       .msg { font-size: 13px; }
@@ -1086,7 +1095,9 @@
       .calc-box { padding: 24px 18px; margin-top: 36px; }
       .calc-box h3 { font-size: 20px; }
       .calc-box .calc-sub { font-size: 13px; }
-      .calc-result-num { font-size: 34px; }
+      .calc-result-num { font-size: 24px; word-break: break-word; }
+      .calc-slider-label { font-size: 13px; gap: 4px; }
+      .calc-slider-label span:last-child { font-size: 18px; flex-shrink: 0; }
       .calc-cta .btn {
         width: 100%;
         justify-content: center;
@@ -1127,13 +1138,15 @@
       .spec-card p { font-size: 12px; }
 
       /* COMPARISON TABLE — columna 3 visible */
-      .compare-scroll-wrapper .compare-table { min-width: 580px; }
-      .compare-table th { padding: 14px 12px; font-size: 11px; }
-      .compare-table td { padding: 14px 12px; font-size: 12px; }
-      .compare-table th:last-child,
-      .compare-table td:last-child { min-width: 150px; }
+      .compare-scroll-wrapper .compare-table { min-width: 620px; }
+      .compare-table th { padding: 14px 10px; font-size: 11px; }
+      .compare-table td { padding: 14px 10px; font-size: 12px; }
+      .compare-table th:first-child,
+      .compare-table td:first-child { min-width: 160px; }
       .compare-table th:nth-child(2),
-      .compare-table td:nth-child(2) { min-width: 160px; }
+      .compare-table td:nth-child(2) { min-width: 180px; }
+      .compare-table th:last-child,
+      .compare-table td:last-child { min-width: 180px; }
       .check { font-size: 13px; }
       .cross { font-size: 13px; }
 
@@ -1204,7 +1217,7 @@
       .sticky-bar .btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 14px; }
 
       /* FLOAT BUTTON */
-      .float-wa { width: 56px; height: 56px; font-size: 26px; bottom: 76px; right: 16px; }
+      .float-wa { width: 56px; height: 56px; font-size: 26px; bottom: 130px; right: 16px; }
       .float-notif { width: 18px; height: 18px; font-size: 10px; }
 
       /* MODAL */
@@ -1215,6 +1228,18 @@
       .modal-input { padding: 13px 14px; font-size: 14px; }
       .modal-submit { font-size: 15px; padding: 15px; }
       .modal-icon { font-size: 44px; margin-bottom: 12px; }
+    }
+
+    /* — 400px: nav muy pequeño — */
+    @media (max-width: 400px) {
+      .logo { font-size: 17px; gap: 6px; }
+      .logo-icon { width: 28px; height: 28px; font-size: 14px; border-radius: 8px; }
+      .nav-inner { padding: 0 14px; }
+      nav .nav-cta .btn-primary {
+        padding: 8px 12px;
+        font-size: 12px;
+        gap: 4px;
+      }
     }
   </style>
 </head>
