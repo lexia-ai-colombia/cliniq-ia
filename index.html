@@ -2152,15 +2152,39 @@
     btn.disabled = true;
     btnText.textContent = 'Registrando...';
 
-    // Simular envío (reemplazar con Supabase cuando esté listo)
-    setTimeout(() => {
+    // Envío real a Supabase
+    const SUPABASE_URL = 'https://pzwxvklvbtqhrjerxdid.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_7T5KltfbFP6olJ6oppevwA_mZKXZ_4l';
+
+    fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        nombre: nombre.value.trim(),
+        whatsapp: wa.value.trim(),
+        email: email.value.trim(),
+        tipo_clinica: clinica.value
+      })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Error al guardar');
       const nombreVal = nombre.value.trim().split(' ')[0];
       document.getElementById('successName').textContent = nombreVal;
       document.getElementById('modalForm').style.display = 'none';
       document.getElementById('modalSuccess').style.display = 'block';
+    })
+    .catch(() => {
+      btnText.textContent = 'Error — intenta de nuevo';
+    })
+    .finally(() => {
       btn.disabled = false;
       btnText.textContent = 'Asegurar mi cupo con descuento →';
-    }, 1200);
+    });
   }
 
   document.getElementById('modalOverlay').addEventListener('click', function(e) {
